@@ -1,0 +1,78 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10.16.0
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # run tests!
+      # - run: yarn test
+  deploy:
+    docker:
+      - image: circleci/node:10.16.0
+    steps:
+      - checkout
+      - run:
+          name: Installing deployment dependencies
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python-pip python-dev build-essential
+            sudo pip install awscli --upgrade
+            yarn add react-dev-utils
+      # - run:
+      #     command: yarn deploy
+      # # - run:
+      # #     name: Make Build Package
+      # #     command: yarn scripts/build.js
+      - run:
+          name: Build
+          command: npm run build
+      - run:
+          name: Deploying
+          command: aws s3 sync build/ s3://b9words.com
+      - run:
+          name: Invalidating Cloudfront
+          command: aws cloudfront create-invalidation --distribution-id EQPVZ253WQ4RH --paths '/*' && rm -rf build
+
+workflows:
+  version: 2
+  watchbees_production:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master
+      - deploy:
+          # requires:
+          #   - build
+          filters:
+            branches:
+              only: master

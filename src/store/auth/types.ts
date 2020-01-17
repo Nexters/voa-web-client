@@ -1,0 +1,2 @@
+export const SIGNIN_WITH_KAKAO = 'SIGNIN_WITH_KAKAO';
+export const UPDATE_PROFILE = 'UPDATE_PROFILE';
