@@ -54,7 +54,7 @@ jobs:
       # #     command: yarn scripts/build.js
       - run:
           name: Build
-          command: npm run build
+          command: yarn scripts/build.js
       - run:
           name: Deploying
           command: aws s3 sync build/ s3://b9words.com
