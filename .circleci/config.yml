@@ -49,7 +49,7 @@ jobs:
             yarn add react-dev-utils
       - run:
           name: Build
-          command: yarn build
+          command: CI=false yarn build
       - run:
           name: Deploying
           command: aws s3 sync build/ s3://b9words.com
