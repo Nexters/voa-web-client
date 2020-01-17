@@ -47,14 +47,9 @@ jobs:
             sudo apt-get install python-pip python-dev build-essential
             sudo pip install awscli --upgrade
             yarn add react-dev-utils
-      # - run:
-      #     command: yarn deploy
-      # # - run:
-      # #     name: Make Build Package
-      # #     command: yarn scripts/build.js
       - run:
           name: Build
-          command: yarn scripts/build.js
+          command: yarn build
       - run:
           name: Deploying
           command: aws s3 sync build/ s3://b9words.com
@@ -66,10 +61,10 @@ workflows:
   version: 2
   watchbees_production:
     jobs:
-      - build:
-          filters:
-            branches:
-              only: master
+      # - build:
+      #     filters:
+      #       branches:
+      #         only: master
       - deploy:
           # requires:
           #   - build
