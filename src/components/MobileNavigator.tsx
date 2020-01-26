@@ -21,15 +21,20 @@ const TextButton = styled(Text)`
     color: rgb(255, 148, 59);
     font-size: 16px;
 `;
+
 interface Props {
     signout: any
 }
+
 class MobileNavigator extends React.Component<Props> {
-    render(){
+    goBack(){
         const { signout } = this.props;
+        signout();
+    }
+    render(){
         return (
             <NavigatorBox direction='row' justify='between'>
-                <IconButton onClick={() => signout()}/>
+                <IconButton onClick={() => this.goBack()}/>
                 <TextButton onClick={() => history.push('/')}>
                     완료
                 </TextButton>
