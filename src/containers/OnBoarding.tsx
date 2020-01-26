@@ -5,7 +5,7 @@ import MobileNavigator from 'components/MobileNavigator';
 
 const Onboarding: React.FC = () => (
     <Box direction='column' flex background="rgba(25,24,29)">
-        <MobileNavigator />
+        <MobileNavigator title='회원가입'/>
         <Profile title='가입하기' close={false}/>
     </Box>
 );

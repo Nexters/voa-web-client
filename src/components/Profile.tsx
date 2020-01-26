@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, TextInput, Image, Text } from 'grommet';
+import { FormClose } from 'grommet-icons';
 import { connect } from 'react-redux';
 import { updateProfile } from 'store/auth/actions';
 import styled from 'styled-components';
@@ -43,6 +44,10 @@ class Profile extends React.Component<Props> {
         this.setState({ value: target, count: target.length })
     }
 
+    clearField(){
+        this.setState({ value: '', count: 0, error: false })
+    }
+
     render(){
         const { profile } = this.props;
         const { value, count, error } = this.state;
@@ -58,15 +63,31 @@ class Profile extends React.Component<Props> {
                         </Box>
                         <InputLabelBox direction='row' justify='between'>
                             <Text>이름</Text>
-                            <Text color={error?'#FF0000':'rgb(34, 34, 34)'}>{count} / 10</Text>
+                            <Text color={error?'#FF0000':'border'}>{count} / 10</Text>
                         </InputLabelBox>
+                        <Box
+                            width="large"
+                            direction="row"
+                            align="center"
+                            pad={{ horizontal: "small", vertical: "xsmall" }}
+                            round="small"
+                            border={{
+                                side: "all",
+                                color: "border"
+                            }}
 
-                        <TextInput
-                            type="text"
-                            placeholder='이름'
-                            value={value}
-                            onChange={event => this.updateField(event.target.value)}
-                        />
+                        >
+                            <TextInput
+                                plain
+                                type="text"
+                                placeholder='이름'
+                                value={value}
+                                onChange={event => this.updateField(event.target.value)}
+                            />
+                            <FormClose onClick={() => this.clearField()}/>
+
+                        </Box>
+
                     </Box>
                 </PaddedBox>
             </Box>

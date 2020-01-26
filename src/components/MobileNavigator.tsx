@@ -18,8 +18,14 @@ const TextButton = styled(Text)`
     font-size: 16px;
 `;
 
+const Title = styled(Text)`
+    font-size: 16px;
+    font-weight: 600;
+`
+
 interface Props {
-    signout: any
+    signout: any,
+    title: string,
 }
 
 class MobileNavigator extends React.Component<Props> {
@@ -28,9 +34,14 @@ class MobileNavigator extends React.Component<Props> {
         signout();
     }
     render(){
+        const { title } = this.props;
         return (
             <NavigatorBox direction='row' justify='between'>
+                {/* NOTE: using styled components on top of grommet-icons cause deep instantiation error during linux build */}
                 <Previous onClick={() => this.goBack()} style={{ cursor: 'pointer' }}/>
+                <Title>
+                    {title}
+                </Title>
                 <TextButton onClick={() => history.push('/')}>
                     완료
                 </TextButton>
