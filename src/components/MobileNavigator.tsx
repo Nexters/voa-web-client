@@ -12,7 +12,7 @@ const NavigatorBox = styled(Box)`
     border-bottom: 1px solid rgb(34, 34, 34);
 `;
 
-const IconButton = styled(Previous)`
+const IconButton = styled(Previous)<{}>`
     cursor: pointer;
 `;
 

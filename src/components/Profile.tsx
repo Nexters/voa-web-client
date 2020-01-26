@@ -24,8 +24,28 @@ interface Props {
     }
 }
 class Profile extends React.Component<Props> {
+    state = { value: '', count: 0, error: false }
+    componentDidMount(){
+        const { profile } = this.props;
+        if(profile){
+            this.setState({ value: profile.nickname, count: profile.nickname.length })
+        }
+    }
+
+    updateField(target){
+        const { count } = this.state;
+        
+        if ( count > 10 ){
+            this.setState({ error: true })
+        } else {
+            this.setState({ error: false })
+        }
+        this.setState({ value: target, count: target.length })
+    }
+
     render(){
         const { profile } = this.props;
+        const { value, count, error } = this.state;
         return (
             <Box direction='column' flex overflow={{ horizontal: 'hidden' }}>
                 <PaddedBox fill>
@@ -38,12 +58,14 @@ class Profile extends React.Component<Props> {
                         </Box>
                         <InputLabelBox direction='row' justify='between'>
                             <Text>이름</Text>
-                            <Text color='rgb(34, 34, 34)'>3 / 10</Text>
+                            <Text color={error?'#FF0000':'rgb(34, 34, 34)'}>{count} / 10</Text>
                         </InputLabelBox>
 
                         <TextInput
                             type="text"
-                            placeholder={profile?profile.nickname:'이름'}
+                            placeholder='이름'
+                            value={value}
+                            onChange={event => this.updateField(event.target.value)}
                         />
                     </Box>
                 </PaddedBox>
