@@ -12,10 +12,6 @@ const NavigatorBox = styled(Box)`
     border-bottom: 1px solid rgb(34, 34, 34);
 `;
 
-const IconButton = styled(Previous)<{}>`
-    cursor: pointer;
-`;
-
 const TextButton = styled(Text)`
     cursor: pointer;
     color: rgb(255, 148, 59);
@@ -34,7 +30,7 @@ class MobileNavigator extends React.Component<Props> {
     render(){
         return (
             <NavigatorBox direction='row' justify='between'>
-                <IconButton onClick={() => this.goBack()}/>
+                <Previous onClick={() => this.goBack()} style={{ cursor: 'pointer' }}/>
                 <TextButton onClick={() => history.push('/')}>
                     완료
                 </TextButton>
