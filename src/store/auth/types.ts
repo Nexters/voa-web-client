@@ -1,2 +1,4 @@
 export const SIGNIN_WITH_KAKAO = 'SIGNIN_WITH_KAKAO';
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const SIGNOUT = 'SIGNOUT';

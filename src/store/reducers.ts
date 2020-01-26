@@ -9,7 +9,7 @@ import productReducer from 'containers/Item/reducer';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  blacklist: [],
+  blacklist: ['isSignedIn', 'profile'],
 };
 
 export default combineReducers({

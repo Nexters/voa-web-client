@@ -1,6 +1,7 @@
 import {
   SIGNIN_WITH_KAKAO,
   UPDATE_PROFILE,
+  SIGNOUT
 } from 'store/auth/types';
 
 const INITIAL_STATE = {
@@ -14,6 +15,7 @@ export default (state = INITIAL_STATE, action: any) => {
       return {
         ...state,
         isSignedIn: true,
+        profile: action.payload,
       };
     case UPDATE_PROFILE:
       return {
@@ -21,6 +23,12 @@ export default (state = INITIAL_STATE, action: any) => {
         profile: {
           name: 'placeholder'
         }
+      }
+    case SIGNOUT:
+      return {
+        ...state,
+        profile: {},
+        isSignedIn: false,
       }
     default:
       return state;

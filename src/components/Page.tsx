@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Button, Heading, Grid, Text } from 'grommet';
 import { Close, UserAdd, Add, SettingsOption } from 'grommet-icons';
+import hideYOverflow from 'HOC/hideYOverflow';
 import styled from 'styled-components';
 
 const StandardButton = styled(Button)`
@@ -10,9 +11,9 @@ const StandardButton = styled(Button)`
     font-weight: 500;
 `;
 
-const PaddedBox = styled(Box)`
-    padding: 1.5rem;
-    padding-top: 3rem;
+export const PaddedBox = styled(Box)`
+    padding-right: 30px;
+    padding-left: 30px;
 `
 
 const LightText = styled(Text)`
@@ -33,6 +34,8 @@ interface Props {
 
 const Page: React.FC<Props> = ({ title, button }) => (
     <Box direction='column' flex overflow={{ horizontal: 'hidden' }}>
+        <br />
+        <br />
         <PaddedBox fill>
             <Grid columns={{ count: 2, size: 'auto' }}>
                 <Box>

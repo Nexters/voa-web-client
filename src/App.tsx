@@ -12,7 +12,7 @@ const theme = {
       family: 'Roboto',
       size: '18px',
       height: '20px',
-    },
+    }
   },
 };
 

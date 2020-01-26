@@ -1,82 +1,77 @@
 import React from 'react';
-import { Box, Button, Heading, Grid } from 'grommet';
-import styled from 'styled-components';
-import { signinWithKakao } from 'store/auth/actions';
+import { Box, Heading, Text } from 'grommet';
+import { signinWithKakao, authError } from 'store/auth/actions';
 import Kakao from 'kakaojs';
-import history from 'history.js'
 import { connect } from 'react-redux';
-
-
-const StandardButton = styled(Button)`
-    width: 100%;
-    height: 50px;
-    border-radius: 0;
-    font-weight: 500;
-    margin-bottom: 100px;
-`;
-
-const PaddedBox = styled(Box)`
-    padding: 3rem;
-`
+import { PaddedBox } from 'components/Page';
+import RoundedButton from 'components/RoundedButton';
 
 interface Props {
-    signinWithKakao: any
+    signinWithKakao: any,
+    authError: any,
 }
 
 class Login extends React.Component<Props> {
     componentDidMount(){
-        // Kakao.init('10de9ea7440bb6acbc6a51a806269891');
-        // console.log(Kakao);
-        // Kakao.Auth.createLoginButton({
-        //     container: '#kakao-login-btn',
-        //     success: function(authObj){
-        //         Kakao.API.request({
-        //             url: '/v2/user/me',
-        //             success: function(res){
-        //                 console.log(res);
-        //             }
-        //         })
-        //         // console.log(authObj)
-        //         // // alert(JSON.stringify(authObj))
-        //         // history.push('/hello')
-        //     },
-        //     fail: function(err){
-        //         console.log(err)
-        //         // alert(JSON.stringify(err));
-        //         history.push('/hello')
-        //     },
-        //     always: () => {
-        //         history.push('/hello')
-        //     }
-        // })
+        Kakao.init('10de9ea7440bb6acbc6a51a806269891');
     }
-    signIn(){
-        alert('로그인 되었습니다');
-        this.props.signinWithKakao();
-    }
-    render(){
-        return (
-            <Box direction='column' flex overflow={{ horizontal: 'hidden' }}>
-                <PaddedBox fill>
-                    <Heading>안녕하세요</Heading>
-                    <Box flex>
-                    </Box>
-                    <StandardButton
-                    id="kakao-login-btn" 
-                    label="카카오계정으로 계속하기"
-                    onClick={() => {this.signIn()}}
-                    type="button"
-                    alignSelf="center"
-                    color="#E3E3E3"
-                    focusIndicator
-                    primary
-                />
-                {/* <div id="kakao-login-btn"></div> */}
+    signIn(signinWithKakao, authError){
+        Kakao.Auth.login({
+            persistAccessToken: true,
+            persistRefreshToken: true,
+            scope: 'profile, friends',
+            success: function(authObj) {
+                Kakao.API.request({
+                    url: '/v1/user/me',
+                    success: function(res){
+                        console.log(res.properties);
+                        signinWithKakao(res.properties);
+                    }
+                })
+                // Kakao.API.request({
+                //     url: '/v1/api/talk/friends',
+                //     success: function(res) {
+                //         console.log(res)
+                //         // console.log(JSON.stringify(res));
+                //     },
+                //     fail: function(err) {
+                //     //   console.log(JSON.stringify(error));
+                //       console.log(err);
+                //     }
+                //   });
 
+            },
+                fail: function(err) {
+                authError(JSON.stringify(err));
+            }
+        })
+    }
+
+   
+    render(){
+        const { signinWithKakao, authError } = this.props;
+        return (
+            <Box direction='column' flex background="rgba(25,24,29)">
+                <PaddedBox fill align="center" justify="center">
+                    <Heading>굿밤</Heading>
+                    <Text>안심귀가앱</Text>
+                    <br />
+                    <br />
+                    <br />
+                    <RoundedButton
+                        id="kakao-login-btn" 
+                        label="카카오톡으로 로그인"
+                        onClick={() => {this.signIn(signinWithKakao, authError)}}
+                        type="button"
+                        alignSelf="center"
+                        color="rgba(255,222,2)"
+                        focusIndicator
+                        primary
+                    />
                 </PaddedBox>
             </Box>
         )
     }
 };
   
-export default connect(null, { signinWithKakao })(Login);
+export default connect(null, { signinWithKakao, authError })(Login);

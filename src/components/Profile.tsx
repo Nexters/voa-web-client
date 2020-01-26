@@ -1,71 +1,61 @@
 import React from 'react';
-import { Box, Button, Heading, Grid, Text, TextInput } from 'grommet';
-import { Close, UserAdd, Add, SettingsOption } from 'grommet-icons';
+import { Box, TextInput, Image, Text } from 'grommet';
 import { connect } from 'react-redux';
 import { updateProfile } from 'store/auth/actions';
 import styled from 'styled-components';
+import { PaddedBox } from 'components/Page';
 
-const StandardButton = styled(Button)`
-    width: 100%;
-    height: 80px;
-    border-radius: 0;
-    font-weight: 500;
+const RoundImage = styled(Image)`
+    border-radius: 50%;
 `;
 
-const PaddedBox = styled(Box)`
-    padding: 1.5rem;
-    padding-top: 3rem;
-`
-
-const Title = styled(Text)`
-    font-weight: 400;
-    font-size: 21px;
+const InputLabelBox = styled(Box)`
+    margin-bottom: 8px;
+    width: 100%;
 `
 
 interface Props {
     title: string,
-    button: string,
     close: boolean,
-    updateProfile: any
+    updateProfile: any,
+    profile: {
+        nickname: string,
+        profile_image: string,
+    }
 }
 class Profile extends React.Component<Props> {
     render(){
+        const { profile } = this.props;
         return (
             <Box direction='column' flex overflow={{ horizontal: 'hidden' }}>
                 <PaddedBox fill>
-                    <Grid columns={{ count: 3, size: 'auto' }}>
-                        <Box>
-                            {this.props.close?<Close />:''}
-                        </Box>
-                        <Box align="center">
-                            <Title>{this.props.title}</Title>
-                        </Box>
-                    </Grid>
-                    <br />
-
                     <Box flex justify="center" align="center">
-                        Image Upload
-                        <br />
-                        <br />
+                        <Box height="100px" width="100px" round="large" style={{ marginBottom: '55px' }}>
+                            <RoundImage
+                                fit="cover"
+                                src={profile?profile.profile_image:'https://placeholder_image'}
+                            />
+                        </Box>
+                        <InputLabelBox direction='row' justify='between'>
+                            <Text>이름</Text>
+                            <Text color='rgb(34, 34, 34)'>3 / 10</Text>
+                        </InputLabelBox>
+
                         <TextInput
                             type="text"
-                            placeholder='이름'
+                            placeholder={profile?profile.nickname:'이름'}
                         />
                     </Box>
                 </PaddedBox>
-                <StandardButton 
-                    label={this.props.button}
-                    onClick={() => {this.props.updateProfile()}}
-                    type="button"
-                    alignSelf="center"
-                    color="#E3E3E3"
-                    focusIndicator
-                    primary
-                />
             </Box>
         )
     }
 };
 
-export default connect(null, { updateProfile })(Profile);
+const select = (state: any) => ({
+    profile: state.auth.profile,
+});
+
+
+export default connect(select, { updateProfile })(Profile);
 
