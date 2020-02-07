@@ -11,6 +11,11 @@ import NotFound from 'containers/NotFound';
 import OnBoarding from 'containers/OnBoarding';
 import { connect } from 'react-redux';
 import CreateChatroom from 'containers/CreateChatroom';
+import ChatroomInvitation from 'containers/ChatroomInvitation';
+import NotificationList from 'containers/NotificationList';
+import ChatroomTemp from 'containers/Chatroom.temp';
+import Information from 'containers/Information';
+import Settings from 'containers/Settings';
 
 const PrivateRoute = ({ component: Component, isSignedIn, ...rest }) => {
     return (
@@ -39,6 +44,12 @@ class CustomRouter extends React.Component<Props> {
                 <PrivateRoute path="/" exact component={Home} isSignedIn={isSignedIn}/>
                 <PrivateRoute path="/onboarding" exact component={OnBoarding} isSignedIn={isSignedIn}/>
                 <PrivateRoute path="/chatroom/create" exact component={CreateChatroom} isSignedIn={isSignedIn}/>
+                <PrivateRoute path="/chatroom/create/invitation" exact component={ChatroomInvitation} isSignedIn={isSignedIn} />
+                <PrivateRoute path="/notification" exact component={NotificationList} isSignedIn={isSignedIn} />
+                <PrivateRoute path="/information" exact component={Information} isSignedIn={isSignedIn} />
+                <PrivateRoute path="/settings" exact component={Settings} isSignedIn={isSignedIn} />
+
+                <PrivateRoute path="/chatroom/temp" exact component={ChatroomTemp} isSignedIn={isSignedIn}/>
                 <Route path="/login" exact component={Login} />
                 <Route path="*" exact component={NotFound} />
             </Switch>

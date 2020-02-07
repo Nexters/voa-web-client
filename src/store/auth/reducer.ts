@@ -21,7 +21,8 @@ export default (state = INITIAL_STATE, action: any) => {
       return {
         ...state,
         profile: {
-          name: 'placeholder'
+          ...state.profile,
+          nickname: action.payload,
         }
       }
     case SIGNOUT:

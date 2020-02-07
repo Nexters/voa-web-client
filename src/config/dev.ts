@@ -6,4 +6,10 @@ export default {
   baseAPIURL,
   googleClientId: '',
   logo: `${baseURL}/images/ci/logo.png`,
+  kakaoIcon: `${baseURL}/images/kakao.png`,
+  deleteIcon: `${baseURL}/images/deleteIcon.png`,
+  menuIcon:`${baseURL}/images/menuIcon.png`,
+  notificationIcon: `${baseURL}/images/notificationIcon.png`,
+  settingsIcon: `${baseURL}/images/settingsIcon.png`,
+  infoIcon: `${baseURL}/images/infoIcon.png`,
 };

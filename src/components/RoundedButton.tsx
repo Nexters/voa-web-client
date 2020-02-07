@@ -6,7 +6,8 @@ const RoundedButton = styled(Button)`
     height: 55px;
     border-radius: 30.5px;
     font-weight: 600;
-    color: rgb(34,34,34)
+    color: #fff;
+    box-shadow: 4px 4px 5px 0 rgb(15, 16, 21), -4px -4px 5px 0 rgb(48, 49, 68);
 `;
 
 export default RoundedButton;

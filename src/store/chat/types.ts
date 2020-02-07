@@ -1,0 +1,1 @@
+export const CREATE_CHATROOM = 'CREATE_CHATROOM';

@@ -1,14 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Box, TextInput, Text, Image } from 'grommet';
-import { FormPrevious } from 'grommet-icons';
+import { Box, TextInput, Text } from 'grommet';
+import { FormClose, FormPrevious } from 'grommet-icons';
 import { connect } from 'react-redux';
-import { updateProfile } from 'store/auth/actions';
+import { createChatroom } from 'store/chat/actions';
 import { PaddedBox } from 'components/Page';
-import Avatar from 'components/Avatar';
-import { PrimaryBold, PrimaryRegular, HighlightedBold, SecondaryBold } from 'components/Text';
+import { PrimaryBold, HighlightedBold, SecondaryBold } from 'components/Text';
 import history from 'history.js';
-import keys from 'config/keys';
 
 const InputLabelBox = styled(Box)`
     margin-bottom: 8px;
@@ -20,32 +18,19 @@ const NavigatorBox = styled(Box)`
     border-bottom: 1px solid rgb(34, 34, 34);
 `;
 
-export const StyledInputBox = styled(Box)`
-    box-shadow: inset 2px 2px 4px 0 rgba(0,0,0,0.3), inset -2px -2px 4px 0 rgba(255, 255, 255, 0.1);
-    border-radius: 25px;
-    padding-left: 15px;
-    padding-right: 15px;
-`;
-
 interface Props {
-    updateProfile: any,
+    createChatroom: any,
     profile: {
         nickname: string,
         profile_image: string,
     },
 }
 
-class Onboarding extends React.Component<Props> {
-    state = { value: '', count: 0, submittable: true }
-    componentDidMount(){
-        const { profile } = this.props;
-        if(profile){
-            this.setState({ value: profile.nickname, count: profile.nickname.length })
-        }
-    }
+class CreateChatroom extends React.Component<Props> {
+    state = { value: '', count: 0, submittable: false }
 
     updateField(target){
-        if ( target.length > 10 || target.length == 0 ){
+        if ( target.length > 20 || target.length == 0 ){
             this.setState({ submittable: false })
         } else {
             this.setState({ submittable: true })
@@ -54,13 +39,13 @@ class Onboarding extends React.Component<Props> {
     }
 
     clearField(){
-        this.setState({ value: '', count: 0, submittable: true })
+        this.setState({ value: '', count: 0, submittable: false })
     }
 
     submitValue(){
-        const { updateProfile } = this.props;
+        const { createChatroom } = this.props;
         const { value } = this.state;
-        updateProfile(value);
+        createChatroom(value);
     }
 
     render(){
@@ -71,13 +56,13 @@ class Onboarding extends React.Component<Props> {
                 <NavigatorBox direction='row' justify='between'>
                     <FormPrevious onClick={(e) => history.goBack()} />
                     <PrimaryBold>
-                        회원가입
+                        멤버 초대하기
                     </PrimaryBold>
-                    {submittable?<HighlightedBold size="16px" onClick={() => {this.submitValue()}}>
-                        완료
+                    {submittable?<HighlightedBold size="14px" onClick={() => {this.submitValue()}}>
+                        다음
                     </HighlightedBold>:
                     <SecondaryBold>
-                        완료
+                        다음
                     </SecondaryBold>
                     }
 
@@ -86,34 +71,31 @@ class Onboarding extends React.Component<Props> {
                         <PaddedBox fill>
                             <Box height="50px" />
                             <Box flex align="center">
-                                <Avatar size="100px" imageURL={profile?profile.profile_image:'https://placeholder_image'} />
-                                <Box height="55px" />
                                 <InputLabelBox direction='row' justify='between'>
-                                    <PrimaryBold>이름을 입력해주세요</PrimaryBold>
-                                    <Text color={submittable?'border':'#FF0000'}>{count} / 10</Text>
+                                    <PrimaryBold>카카오톡으로 초대하기</PrimaryBold>
+                                    <Text color={submittable?'border':'#FF0000'}>{count} / 20</Text>
                                 </InputLabelBox>
-                                <StyledInputBox
+                                <Box
                                     width="large"
                                     direction="row"
                                     align="center"
                                     pad={{ horizontal: "small", vertical: "xsmall" }}
                                     round="small"
-                                    // border={{
-                                    //     side: "all",
-                                    //     color: "border"
-                                    // }}
+                                    border={{
+                                        side: "all",
+                                        color: "border"
+                                    }}
                                 >
                                     <TextInput
                                         plain
                                         type="text"
-                                        placeholder='이름'
+                                        placeholder='2020.02.08 귀가방'
                                         value={value}
                                         onChange={event => this.updateField(event.target.value)}
                                         color='#000'
                                     />
-                                    <Image onClick={() => this.clearField()} src={keys.deleteIcon} width="24px" />
-
-                                </StyledInputBox>
+                                    <FormClose onClick={() => this.clearField()}/>
+                                </Box>
 
                             </Box>
                         </PaddedBox>
@@ -128,4 +110,4 @@ const select = (state: any) => ({
 });
 
 
-export default connect(select, { updateProfile })(Onboarding);
+export default connect(select, { createChatroom })(CreateChatroom);

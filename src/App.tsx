@@ -12,8 +12,12 @@ const theme = {
       family: 'Roboto',
       size: '18px',
       height: '20px',
-    }
+    },
   },
+  layer: {
+    zIndex: '10'
+  },
+
 };
 
 class App extends React.Component {

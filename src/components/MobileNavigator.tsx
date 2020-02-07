@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Text } from 'grommet';
 import { connect } from 'react-redux';
-import { Previous } from 'grommet-icons';
+import { FormPrevious } from 'grommet-icons';
 import { signout } from 'store/auth/actions'; 
 import history from 'history.js';
 
@@ -38,7 +38,7 @@ class MobileNavigator extends React.Component<Props> {
         return (
             <NavigatorBox direction='row' justify='between'>
                 {/* NOTE: using styled components on top of grommet-icons cause deep instantiation error during linux build */}
-                <Previous onClick={() => this.goBack()} style={{ cursor: 'pointer' }}/>
+                <FormPrevious onClick={() => this.goBack()} style={{ cursor: 'pointer' }}/>
                 <Title>
                     {title}
                 </Title>

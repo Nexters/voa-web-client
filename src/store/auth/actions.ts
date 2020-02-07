@@ -24,9 +24,9 @@ export const signout = () => async (dispatch: any) => {
   dispatch({ type: SIGNOUT })
 }
 
-export const updateProfile = () => async (dispatch: any) => {
-  dispatch({ type: UPDATE_PROFILE });
-  history.push('/login')
+export const updateProfile = (name: string) => async (dispatch: any) => {
+  dispatch({ type: UPDATE_PROFILE, payload: name });
+  history.push('/')
 }
 
 export const actionName = (formValues: { name: string }) => async (dispatch: any, getState: any) => {
