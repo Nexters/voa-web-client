@@ -1,7 +1,11 @@
 import { Button } from 'grommet';
 import styled from 'styled-components';
 
-const RoundedButtonXS = styled(Button)`
+interface Props {
+    status?: string
+}
+
+const RoundedButtonXS = styled<Props>(Button)`
     width: 110px;
     height: 45px;
     border-radius: 26px;
