@@ -7,6 +7,8 @@ import { PrimaryBold, SecondaryBold } from 'components/Text';
 import Avatar from 'components/Avatar';
 import MobileBar from 'components/MobileBar';
 import { connect } from 'react-redux';
+import { signout } from 'store/auth/actions';
+
 
 const PaddedBox = styled(Box)`
     padding-right: 16px;
@@ -33,7 +35,8 @@ interface Props {
         nickname: string,
         profile_image: string,
     },
-    title?: string
+    title?: string,
+    signout: any,
 }
 
 interface State {
@@ -118,6 +121,11 @@ class Sidebar extends React.Component<Props, State> {
                         </Link>
                         <LineBreak />
                         <LineBreak />
+                        <PaddedBox>
+                            <SecondaryBold onClick={() => this.props.signout()}>
+                                로그아웃
+                            </SecondaryBold>
+                        </PaddedBox>
                     </Box>
                 </Layer>}
                 <MobileBar navigationClick={() => this.setState(prevState => ({
@@ -134,4 +142,4 @@ const select = (state: any) => ({
 });
 
 
-export default connect(select, { })(Sidebar);
+export default connect(select, { signout })(Sidebar);

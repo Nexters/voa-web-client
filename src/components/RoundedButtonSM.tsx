@@ -1,5 +1,5 @@
 import { Button } from 'grommet';
-import styled, { withProps } from 'styled-components';
+import styled from 'styled-components';
 
 interface Props {
     status?: string
