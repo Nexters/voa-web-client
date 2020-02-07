@@ -37,7 +37,7 @@ export const SecondaryRegular = styled(Text)`
 export const HighlightedBold = styled(Text)`
     font-size: 16px;
     font-size: ${props => props.size};
-    color: rgb(255,158,70);
+    color: rgb(255,177,94);
     letter-spacing: -0.38px;
     font-weight: 600;
 `
