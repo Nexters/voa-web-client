@@ -6,7 +6,7 @@ interface Props {
 }
 
 const RoundedButtonXS = styled(Button)<Props>`
-    width: 110px;
+    width: 93px;
     height: 45px;
     border-radius: 26px;
     font-weight: 600;

@@ -60,7 +60,6 @@ class Chatroom extends React.Component<Props> {
                             status="default"
                             alignSelf="center"
                             color="rgb(29,30,43)"
-                            width="110px"
                             primary
                         />
                     </Box>
@@ -99,7 +98,6 @@ class Chatroom extends React.Component<Props> {
                                 status="default"
                                 alignSelf="center"
                                 color="rgb(47,49,67)"
-                                width="93px"
                                 primary
                             />
                         </Box>
