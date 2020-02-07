@@ -5,7 +5,7 @@ interface Props {
     status?: string
 }
 
-const RoundedButtonXS = styled<Props>(Button)`
+const RoundedButtonXS = styled(Button)<Props>`
     width: 110px;
     height: 45px;
     border-radius: 26px;
