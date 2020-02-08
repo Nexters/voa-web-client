@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from 'grommet';
 import { Link } from 'react-router-dom';
-import RoundedButton from 'components/RoundedButton';
+import HighlightedRoundedButton from 'components/Button/HighlightedRoundedButton';
 import styled from 'styled-components';
 import { SecondaryRegular, PrimaryBold } from 'components/Text';
 import Sidebar from 'containers/Sidebar';
@@ -42,21 +42,19 @@ class Home extends React.Component<Props> {
                     </SecondaryRegular>
                     <Box height="18px" />
                     <Link to="/chatroom/create">
-                        <RoundedButton
+                        <HighlightedRoundedButton
                             label="새로운 귀가방 만들기"
                             type="button"
                             alignSelf="center"
                             color="rgba(255, 177, 94)"
                             focusIndicator
                             primary
-                            style={{ boxShadow: '4px 4px 4px 0 rgb(20, 21, 29), -4px -4px 4px 0 rgb(80, 85, 117)'}}
                         />
                     </Link>
                 </PaddedBox>
             </Box>
         );
-    }
-   
+    }  
 }
 
 export default Home;

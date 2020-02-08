@@ -1,10 +1,10 @@
 import React from 'react';
-import { Box, Text, Image } from 'grommet';
+import { Box, Image } from 'grommet';
 import { signinWithKakao, authError } from 'store/auth/actions';
 import Kakao from 'kakaojs';
 import { connect } from 'react-redux';
-import { PaddedBox } from 'components/Page';
-import RoundedButton from 'components/RoundedButton';
+import PaddedBox from 'components/PaddedBox';
+import RoundedButton from 'components/Button/RoundedButton';
 import { PrimaryBold, SecondaryBold } from 'components/Text';
 import Avatar from 'components/Avatar';
 import keys from 'config/keys';
@@ -74,10 +74,9 @@ class Login extends React.Component<Props> {
                         color="rgb(29,30,43)"
                         focusIndicator
                         primary
-
                         icon={<Image src={keys.kakaoIcon} width="24px"/>}
                     >
-                        </RoundedButton>
+                    </RoundedButton>
                 </PaddedBox>
             </Box>
         )

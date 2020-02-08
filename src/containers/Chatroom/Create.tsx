@@ -4,11 +4,11 @@ import { Box, TextInput, Text, Image } from 'grommet';
 import { FormPrevious } from 'grommet-icons';
 import { connect } from 'react-redux';
 import { createChatroom } from 'store/chat/actions';
-import { PaddedBox } from 'components/Page';
+import PaddedBox from 'components/PaddedBox';
 import { PrimaryBold, HighlightedBold, SecondaryBold, SecondaryRegular } from 'components/Text';
 import history from 'history.js';
 import keys from 'config/keys';
-import { StyledInputBox } from './OnBoarding';
+import { StyledInputBox } from 'containers/User/OnBoarding';
 
 const InputLabelBox = styled(Box)`
     margin-bottom: 8px;
@@ -32,7 +32,7 @@ class CreateChatroom extends React.Component<Props> {
     state = { value: '', count: 0, submittable: false }
 
     updateField(target){
-        if ( target.length > 20 || target.length == 0 ){
+        if ( target.length > 20 || target.length === 0 ){
             this.setState({ submittable: false })
         } else {
             this.setState({ submittable: true })
@@ -51,7 +51,6 @@ class CreateChatroom extends React.Component<Props> {
     }
 
     render(){
-        const { profile } = this.props;
         const { value, count, submittable } = this.state;
         return (
             <Box direction='column' flex background="rgb(29,30,43)">
@@ -108,9 +107,4 @@ class CreateChatroom extends React.Component<Props> {
     }
 };
 
-const select = (state: any) => ({
-    profile: state.auth.profile,
-});
-
-
-export default connect(select, { createChatroom })(CreateChatroom);
+export default connect(null, { createChatroom })(CreateChatroom);

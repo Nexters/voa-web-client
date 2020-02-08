@@ -3,17 +3,15 @@ import {
     Router, Route, Switch, Redirect,
   } from 'react-router-dom';
 import history from 'history.js';
-// import User from 'containers/User';
-// import Page from 'components/Page';
 import Home from 'containers/Home';
 import Login from 'containers/User/Login';
 import NotFound from 'containers/NotFound';
-import OnBoarding from 'containers/OnBoarding';
+import OnBoarding from 'containers/User/OnBoarding';
 import { connect } from 'react-redux';
-import CreateChatroom from 'containers/CreateChatroom';
-import ChatroomInvitation from 'containers/ChatroomInvitation';
+import CreateChatroom from 'containers/Chatroom/Create';
+import ChatroomInvitation from 'containers/Chatroom/Invitation';
 import NotificationList from 'containers/NotificationList';
-import ChatroomTemp from 'containers/Chatroom.temp';
+import ChatroomTemp from 'containers/Chatroom/Chatroom.temp';
 import Information from 'containers/Information';
 import Settings from 'containers/Settings';
 

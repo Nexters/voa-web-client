@@ -9,7 +9,6 @@ import MobileBar from 'components/MobileBar';
 import { connect } from 'react-redux';
 import { signout } from 'store/auth/actions';
 
-
 const PaddedBox = styled(Box)`
     padding-right: 16px;
     padding-left: 16px;
@@ -136,10 +135,8 @@ class Sidebar extends React.Component<Props, State> {
     }
 }
 
-
 const select = (state: any) => ({
     profile: state.auth.profile,
 });
-
 
 export default connect(select, { signout })(Sidebar);

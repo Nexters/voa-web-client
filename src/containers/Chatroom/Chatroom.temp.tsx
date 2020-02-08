@@ -1,8 +1,7 @@
 import React from 'react';
 import { Box } from 'grommet';
-import { Link } from 'react-router-dom';
-import RoundedButtonSM from 'components/RoundedButtonSM';
-import RoundedButtonXS from 'components/RoundedButtonXS';
+import RoundedButtonSM from 'components/Button/RoundedButtonSM';
+import RoundedButtonXS from 'components/Button/RoundedButtonXS';
 import styled from 'styled-components';
 import { PrimaryRegular, SecondaryRegular, HighlightedBold, SecondaryBold, PrimaryBold } from 'components/Text';
 import Sidebar from 'containers/Sidebar';

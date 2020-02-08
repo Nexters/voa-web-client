@@ -4,7 +4,6 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import authReducer from 'store/auth/reducer';
-import productReducer from 'containers/Item/reducer';
 import chatReducer from 'store/chat/reducer';
 
 const authPersistConfig = {
@@ -18,6 +17,5 @@ const authPersistConfig = {
 export default combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   form: formReducer,
-  products: productReducer,
   chat: chatReducer,
 });

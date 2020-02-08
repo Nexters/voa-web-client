@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Box, Text, Button } from 'grommet';
+import { Box } from 'grommet';
 import { FormPrevious } from 'grommet-icons';
 import { connect } from 'react-redux';
 import { SecondaryBold, PrimaryBold } from 'components/Text';
@@ -14,15 +14,6 @@ const PaddedBox = styled(Box)`
 const NavigatorBox = styled(Box)`
     padding: 15px 22px 10px 16px;
     border-bottom: 1px solid rgb(34, 34, 34);
-`;
-
-const RoundedButton = styled(Box)`
-    width: 72px;
-    height: 28px;
-    border-radius: 14px;
-    font-weight: 600;
-    background-color: rgb(255, 156, 67);
-    color: #fff;
 `;
 
 const PaddedSection = styled(Box)`

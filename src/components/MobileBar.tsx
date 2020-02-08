@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box, Text, Image } from 'grommet';
+import { Box, Image } from 'grommet';
 import { connect } from 'react-redux';
-import { Notification, SettingsOption, Menu, StatusInfo } from 'grommet-icons';
+import { Menu } from 'grommet-icons';
 import { signout } from 'store/auth/actions';
 import { Link } from 'react-router-dom';
 import { PrimaryBold } from 'components/Text';
@@ -12,17 +12,6 @@ const NavigatorBox = styled(Box)`
     padding: 15px 13px 10px 16px;
     border-bottom: 1px solid rgb(34, 34, 34);
 `;
-
-const TextButton = styled(Text)`
-    cursor: pointer;
-    color: rgb(255, 148, 59);
-    font-size: 16px;
-`;
-
-const Title = styled(Text)`
-    font-size: 16px;
-    font-weight: 600;
-`
 
 interface Props {
     signout: any,
@@ -63,11 +52,9 @@ class MobileBar extends React.Component<Props> {
     }
 };
 
-
 const select = (state: any) => ({
     profile: state.auth.profile,
 });
 
 
 export default connect(select, { signout })(MobileBar);
-

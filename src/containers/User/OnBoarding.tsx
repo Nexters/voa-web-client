@@ -4,9 +4,9 @@ import { Box, TextInput, Text, Image } from 'grommet';
 import { FormPrevious } from 'grommet-icons';
 import { connect } from 'react-redux';
 import { updateProfile } from 'store/auth/actions';
-import { PaddedBox } from 'components/Page';
+import PaddedBox from 'components/PaddedBox';
 import Avatar from 'components/Avatar';
-import { PrimaryBold, PrimaryRegular, HighlightedBold, SecondaryBold } from 'components/Text';
+import { PrimaryBold, HighlightedBold, SecondaryBold } from 'components/Text';
 import history from 'history.js';
 import keys from 'config/keys';
 
@@ -45,7 +45,7 @@ class Onboarding extends React.Component<Props> {
     }
 
     updateField(target){
-        if ( target.length > 10 || target.length == 0 ){
+        if ( target.length > 10 || target.length === 0 ){
             this.setState({ submittable: false })
         } else {
             this.setState({ submittable: true })
@@ -98,10 +98,6 @@ class Onboarding extends React.Component<Props> {
                                     align="center"
                                     pad={{ horizontal: "small", vertical: "xsmall" }}
                                     round="small"
-                                    // border={{
-                                    //     side: "all",
-                                    //     color: "border"
-                                    // }}
                                 >
                                     <TextInput
                                         plain
@@ -126,6 +122,5 @@ class Onboarding extends React.Component<Props> {
 const select = (state: any) => ({
     profile: state.auth.profile,
 });
-
 
 export default connect(select, { updateProfile })(Onboarding);
