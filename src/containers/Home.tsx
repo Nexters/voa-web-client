@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import HighlightedRoundedButton from 'components/Button/HighlightedRoundedButton';
 import styled from 'styled-components';
 import { SecondaryRegular, PrimaryBold } from 'components/Text';
-import Sidebar from 'containers/Sidebar';
+import Sidebar from 'components/Sidebar';
 
 const PaddedBox = styled(Box)`
     padding-right: 16px;

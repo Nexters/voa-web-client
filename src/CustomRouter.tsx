@@ -2,12 +2,12 @@ import React from 'react';
 import {
     Router, Route, Switch, Redirect,
   } from 'react-router-dom';
+import { connect } from 'react-redux';
 import history from 'history.js';
 import Home from 'containers/Home';
 import Login from 'containers/User/Login';
 import NotFound from 'containers/NotFound';
 import OnBoarding from 'containers/User/OnBoarding';
-import { connect } from 'react-redux';
 import CreateChatroom from 'containers/Chatroom/Create';
 import ChatroomInvitation from 'containers/Chatroom/Invitation';
 import NotificationList from 'containers/NotificationList';

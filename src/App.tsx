@@ -18,9 +18,6 @@ const theme = {
       height: '20px',
     },
   },
-  layer: {
-    zIndex: '10'
-  },
 };
 
 class App extends React.Component {

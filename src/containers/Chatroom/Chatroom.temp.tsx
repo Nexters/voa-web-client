@@ -4,7 +4,7 @@ import RoundedButtonSM from 'components/Button/RoundedButtonSM';
 import RoundedButtonXS from 'components/Button/RoundedButtonXS';
 import styled from 'styled-components';
 import { PrimaryRegular, SecondaryRegular, HighlightedBold, SecondaryBold, PrimaryBold } from 'components/Text';
-import Sidebar from 'containers/Sidebar';
+import Sidebar from 'components/Sidebar';
 import { connect } from 'react-redux';
 import Avatar from 'components/Avatar';
 
